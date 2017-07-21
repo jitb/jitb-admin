@@ -1,0 +1,38 @@
+
+// Snazzy Maps
+// --------------------------------------------------
+
+.sm-plugin .nav-tab {
+    color: $highlight-color !important;
+}
+
+
+// TinyPNG
+// --------------------------------------------------
+
+$hl-base: $highlight-color;
+$hl-alt: lighten($hl-base, 6%);
+
+div.tiny-bulk-optimization div.dashboard div.optimize div.progressbar div.progress {
+    background-color: $highlight-color !important;
+    background-image: linear-gradient( -63deg, $hl-base 0%, $hl-base 25%, $hl-alt 25%, $hl-alt 50%, $hl-base 50%, $hl-base 75%, $hl-alt 75%, $hl-alt 100% ) !important;
+}
+
+div.tiny-bulk-optimization div.available div.tooltip span.dashicons {
+    color: $highlight-color !important;
+}
+
+
+// Regen Thumbnails
+// --------------------------------------------------
+
+.ui-widget-header {
+    border: 1px solid $highlight-color !important;
+    background: lighten($highlight-color, 10%) !important;
+}
+
+
+// WooCommerce
+// --------------------------------------------------
+
+// Style the 'ticks'

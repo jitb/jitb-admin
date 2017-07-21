@@ -1,0 +1,65 @@
+
+// Inputs
+
+input[type=text], 
+input[type=search], 
+input[type=radio], 
+input[type=tel], 
+input[type=time], 
+input[type=url], 
+input[type=week], 
+input[type=password], 
+input[type=checkbox], 
+input[type=color], 
+input[type=date], 
+input[type=datetime], 
+input[type=datetime-local], 
+input[type=email], 
+input[type=month], 
+input[type=number], 
+select, 
+textarea {
+
+    &:focus {
+        border-color: lighten($highlight-color, 8%);
+        box-shadow: 0 0 2px transparentize($highlight-color, 0.6);
+    }
+}
+
+.wp-core-ui {
+
+    .button-primary {
+
+        // Disabled Buttons
+
+        &[disabled],
+        &:disabled,
+        &.button-primary-disabled,
+        &.disabled {
+            color: transparentize($white, 0.6) !important;
+        }
+    }
+
+    .button-link {
+        color: $link;
+
+        &:hover {
+            color: $link-focus;
+        }
+    }
+
+    .button-secondary:focus, 
+    .button.focus, 
+    .button:focus {
+        border-color: $highlight-color;
+        box-shadow: 0 0 3px transparentize($highlight-color, 0.2);
+    }
+}
+
+// Focus
+
+.wp-person a:focus .gravatar, 
+a:focus, 
+a:focus .media-icon img {
+    box-shadow: 0 0 2px 1px transparentize($highlight-color, 0.5);
+}

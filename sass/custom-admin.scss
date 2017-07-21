@@ -1,0 +1,712 @@
+
+@import 'init';
+@import 'wp-variables';
+@import 'wp-mixins';
+@import 'wp-admin';
+@import 'inputs';
+
+
+
+
+// ==================================================
+// JITB CUSTOM VARS
+// ==================================================
+
+$admin-menu-width: 12rem;
+
+%notice {
+    background-color: $white;
+    -webkit-box-shadow: 0 1px 1px 0 transparentize($black, 0.9);
+    box-shadow: 0 1px 1px 0 transparentize($black, 0.9);
+    border: none;
+    border-left: 4px solid $ui-alert;
+    border-radius: 0;
+    padding: 1px 12px;
+    margin: 5px 15px 2px;
+    color: $base;
+    font-size: 13px;
+
+    &.updated {
+        border-left-color: $ui-success;
+    }
+}
+
+
+// ==================================================
+// CUSTOM LAYOUT
+// ==================================================
+
+// Admin Layout
+// --------------------------------------------------
+
+#wpcontent,
+#wpfooter {
+
+    margin-left: $admin-menu-width;
+
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+}
+
+#wpbody-content {
+    // padding-bottom: 0;
+    padding-bottom: 8rem;
+}
+
+#wpfooter {
+
+    // position: relative;
+
+    padding-top: 1rem;
+    margin-bottom: 0.25rem;
+
+    hr {
+        margin-bottom: 1.5rem;
+    }
+
+    .jitb-admin-footer {
+        margin-bottom: 0.5rem;
+        float: left;
+    }
+
+    .jitb-help-support,
+    .jitb-credits {
+
+        float: left;
+        margin-right: 1rem;
+    }
+
+    .jitb-help-support {
+        margin-top: -4px;
+    }
+
+    #footer-upgrade {
+        float: right;
+    }
+}
+
+#screen-meta-links {
+    margin: 0;
+}
+
+#wpadminbar,
+#adminmenu,
+#wpbody {
+
+    .wrap {
+        margin: 1rem 0;
+    }
+
+    #screen-meta {
+        margin-right: 0;
+    }
+}
+
+#adminmenu,
+#adminmenu .wp-submenu, 
+#adminmenuback, 
+#adminmenuwrap {
+    width: $admin-menu-width;
+}
+
+
+// Admin Menu
+// --------------------------------------------------
+
+#adminmenu {
+
+    // Sub Menu "Flyouts"
+    // --------------------------------------------------
+
+    .wp-submenu {
+        left: $admin-menu-width;
+        box-shadow: 1px 2px 4px transparentize($black, 0.8);
+
+        background-color: $highlight-color;
+
+        a {
+            color: $white;
+
+            &:hover,
+            &:focus {
+                color: transparentize($white, 0.5);
+            }
+        }
+
+        > li.current > a {
+            color: transparentize($white, 0.1);
+
+            &:hover,
+            &:focus {
+                color: transparentize($white, 0.1);
+            }
+        }
+    }
+
+    .wp-menu-open .wp-submenu {
+
+        a {
+            &:hover,
+            &:focus {
+                color: transparentize($white, 0.1);
+            }
+        }
+    }
+
+    a.menu-top:focus+.wp-submenu, 
+    .js & .opensub .wp-submenu, 
+    .js & .sub-open, 
+    .no-js li.wp-has-submenu:hover .wp-submenu {
+        top: 0;
+    }
+
+    // Active Menu Items
+    // --------------------------------------------------
+
+    .wp-has-current-submenu .wp-submenu .wp-submenu-head, 
+    .wp-menu-arrow, 
+    .wp-menu-arrow div, 
+    li.current a.menu-top, 
+    li.wp-has-current-submenu a.wp-has-current-submenu, 
+    .folded & li.current.menu-top, 
+    .folded & li.wp-has-current-submenu {
+        background: $highlight-color;
+    }
+}
+
+// Plugin Update Flag
+// --------------------------------------------------
+
+#adminmenu li.current a .awaiting-mod, 
+#adminmenu li a.wp-has-current-submenu .update-plugins, 
+#adminmenu li:hover a .awaiting-mod, 
+#adminmenu li.menu-top:hover > a .update-plugins {
+    background-color: transparentize($white, 0.7);
+}
+
+#adminmenu .awaiting-mod, 
+#adminmenu .update-plugins {
+    background-color: transparentize($white, 0.7);
+    vertical-align: inherit;
+}
+
+// Active Sub Menu BG Colour (Dark Grey)
+// --------------------------------------------------
+
+#adminmenu .wp-has-current-submenu .wp-submenu, 
+#adminmenu .wp-has-current-submenu .wp-submenu.sub-open, 
+#adminmenu .wp-has-current-submenu.opensub .wp-submenu, 
+#adminmenu a.wp-has-current-submenu:focus+.wp-submenu, 
+.no-js li.wp-has-current-submenu:hover .wp-submenu {
+    background-color: darken($base-color, 5%);
+}
+
+// Menu Item Padding
+
+#adminmenu .wp-has-current-submenu ul>li>a, 
+.folded #adminmenu li.menu-top .wp-submenu>li>a {
+    padding: 0.4rem 1rem;
+}
+
+#adminmenu div.wp-menu-name {
+    padding: 9px 1rem;
+}
+
+// Align Menu Icons to Right
+// --------------------------------------------------
+
+#adminmenu div.wp-menu-image {
+    float: right;
+    padding-right: 0.625rem;
+
+    // Icon Color & Padding
+    // --------------------------------------------------
+
+    &:before {
+        color: transparentize($white, 0.625);
+        padding: 8px 0;
+    }
+}
+
+
+// Sub Menu "Triangle" Color
+// --------------------------------------------------
+
+ul#adminmenu {
+
+    li.wp-not-current-submenu.opensub {
+
+        &:after {
+            display: block !important;
+            content: "" !important;
+            border-right-color: $highlight-color !important;
+        }
+    }
+}
+
+
+// Menu Item Hover
+// --------------------------------------------------
+
+#adminmenu > li > a:hover,
+#adminmenu li.menu-top:hover, 
+#adminmenu li.opensub>a.menu-top, 
+#adminmenu li>a.menu-top:focus {
+    color: $white; 
+    background-color: transparentize($white, 0.9);
+}
+
+
+// Admin Heading Text Color
+// --------------------------------------------------
+
+h1, h2, h3 {
+    color: lighten($base-color, 12%);
+}
+
+.ac_match, 
+.highlight, 
+.subsubsub a.current {
+    color: lighten($base-color, 12%);
+}
+
+
+// Buttons
+// --------------------------------------------------
+
+#collapse-button:focus, 
+#collapse-button:hover {
+    color: $highlight-color;
+}
+
+
+// "Add New" Buttons
+// --------------------------------------------------
+
+.wrap {
+
+    .add-new-h2,
+    .page-title-action {
+
+        &,
+        &:active {
+            color: $highlight-color;
+        }
+
+        &:hover,
+        &:focus {
+            border-color: $highlight-color;
+            background-color: $highlight-color;
+            box-shadow: none;
+            color: $white;
+        }
+    }
+}
+
+.tagchecklist .ntdelbutton {
+    
+    .remove-tag-icon:before {
+        color: lighten($base, 30%);
+    }
+
+    &:hover {
+        
+        .remove-tag-icon:before {
+            color: $ui-danger;
+        }
+    }
+}
+
+// Media Controls
+// --------------------------------------------------
+
+.media-frame a,
+.view-switch a {
+
+    &.current:before {
+        color: $highlight-color;
+    }
+
+    &,
+    &:before {
+        color: #666;
+    }
+
+    &:hover {
+
+        &,
+        &:before {
+            color: $highlight-color;
+        }
+    }
+
+    &:focus {
+        box-shadow: 0 0 2px 1px transparentize($highlight-color, 0.5);
+    }
+}
+
+.drag-drop.drag-over #drag-drop-area {
+    border-color: $highlight-color;
+}
+
+.plugins tr.active {
+
+    + tr.inactive, 
+    &.plugin-update-tr+tr.inactive {
+            
+        td, th {
+            border-top: none;
+            box-shadow: none;
+            border-bottom: 1px solid transparentize($black, 0.92);
+        }
+    }
+}
+
+.wp-core-ui {
+        
+    .attachment.details, 
+    .attachment,
+    .selected.attachment {
+
+        &:focus {
+            box-shadow: inset 0 0 2px 3px $white, inset 0 0 0 7px $highlight-color;
+        }
+    }
+
+    .attachment.details {
+        box-shadow: inset 0 0 0 3px $white, inset 0 0 0 7px $highlight-color;
+    }
+
+    .attachment.details .check, 
+    .attachment.selected .check:focus, 
+    .media-frame.mode-grid .attachment.selected .check {
+        background-color: $highlight-color;
+        box-shadow: 0 0 0 1px $white, 0 0 0 2px $highlight-color; 
+    }
+}
+
+.media-frame {
+
+    input[type=text], 
+    input[type=password], 
+    input[type=number], 
+    input[type=search], 
+    input[type=email], 
+    input[type=url], 
+    select, 
+    textarea {
+          
+        &:focus {   
+            border-color: $highlight-color;
+        }
+    }
+}
+
+
+// Plugin Layout
+// --------------------------------------------------
+
+.plugin-update-tr.active td, 
+.plugins .active th.check-column {
+    border-left: 4px solid $highlight-color;
+}
+
+.plugins {
+
+    .active {
+
+        td, 
+        th {
+            background-color: transparentize($highlight-color, 0.92);
+        }
+    }
+
+    .plugin-update-tr {
+
+        .notice, 
+        div[class=update-message] {
+            margin: 0.375rem 0 1rem 40px;
+            border-left: none;
+
+            background-color: $highlight-color;
+            
+            p {
+                color: transparentize($white, 0.25);
+                font-weight: 300;
+
+                &:before {
+                    color: $white;
+                }
+            }
+
+            a {
+                color: $white;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.notice-error,
+div.error {
+    border-left-color: $ui-danger; 
+}
+
+.notice-warning {
+    border-left-color: $ui-warning;
+}
+
+.notice-success, 
+div.updated {
+    border-left-color: $ui-success;
+}
+
+.notice-dismiss {
+    color: lighten($base, 30%);
+    text-decoration: none;
+
+    position: absolute;
+    top: 0;
+    right: 1px;
+    border: none;
+    margin: 0;
+    padding: 9px;
+    background: 0 0;
+    cursor: pointer;
+
+    text-decoration: none;
+
+    overflow: hidden;
+    height: 2.2rem;
+
+    &:before {
+        background: 0 0;
+        color: lighten($base, 30%);
+        content: "\f153";
+        display: block;
+        font: 400 16px/20px dashicons;
+        speak: none;
+        height: 20px;
+        text-align: center;
+        width: 20px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+    }
+
+    &:hover {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
+        &:before {
+            color: $ui-danger;
+        }
+    }
+}
+
+#all-plugins-table .plugins a.delete, 
+#media-items a.delete, 
+#media-items a.delete-permanently, 
+#nav-menu-footer .menu-delete, 
+#search-plugins-table .plugins a.delete, 
+.plugins a.delete, 
+.row-actions span.delete a, 
+.row-actions span.spam a, 
+.row-actions span.trash a, 
+.submitbox .submitdelete, 
+.widget-control-remove, 
+.widget-control-remove:focus,
+#submitpost input.delete {
+    color: darken($ui-danger, 5%);
+}
+
+#the-comment-list .unapprove a {
+    color: $ui-alert;
+}
+
+.media-modal-close:active, 
+.media-modal-close:hover {
+    color: $highlight-color;
+}
+
+.media-modal-close:focus {
+    color: $highlight-color;
+    border-color: $highlight-color;
+    box-shadow: 0 0 3px transparentize($highlight-color, 0.2);
+}
+
+
+// Customize Controls
+// --------------------------------------------------
+
+.customize-controls-close,
+.customize-controls-preview-toggle {
+    &:focus,
+    &:hover {
+        color: $highlight-color;
+        border-top-color: $highlight-color;
+    }
+}
+
+#customize-controls .control-section .accordion-section-title:focus, 
+#customize-controls .control-section .accordion-section-title:hover, 
+#customize-controls .control-section.open .accordion-section-title, 
+#customize-controls .control-section:hover>.accordion-section-title {
+    color: $highlight-color;
+    background: mix($white, $highlight-color, 97%);
+    border-left-color: $highlight-color;
+}
+
+#customize-theme-controls .control-section .accordion-section-title:focus, 
+#customize-theme-controls .control-section .accordion-section-title:hover, 
+#customize-theme-controls .control-section.open .accordion-section-title, 
+#customize-theme-controls .control-section:hover>.accordion-section-title {
+    &:after {
+        color: $highlight-color;
+    }
+}
+
+.customize-panel-back,
+.customize-section-back {
+    &:focus,
+    &:hover {
+        color: $highlight-color;
+        background: mix($white, $highlight-color, 97%);
+        border-left-color: $highlight-color;
+    }
+}
+
+.menu-item-handle:hover,
+#available-menu-items .menu-item-handle:hover .item-add, 
+.menu-item-handle:hover .item-edit, 
+.menu-item-handle:hover .item-type {
+    color: $highlight-color;
+}
+
+
+.active-menu-screen-options .customize-screen-options-toggle {
+    color: $highlight-color;
+}
+
+#customize-controls .customize-info.open.active-menu-screen-options .customize-help-toggle,
+.customize-screen-options-toggle {
+
+    &:active,
+    &:focus,
+    &:hover {
+        color: $highlight-color;
+    }
+}
+
+#customize-controls .customize-info .customize-help-toggle:focus, 
+#customize-controls .customize-info .customize-help-toggle:hover, 
+#customize-controls .customize-info.open .customize-help-toggle {
+    color: $highlight-color;
+}
+
+.js .postbox .handlediv:focus .toggle-indicator:before {
+    border-color: lighten($highlight-color, 0%);
+    box-shadow: 0 0 3px transparentize($highlight-color, 0.2);
+}
+
+.theme-browser .theme.active .theme-name, 
+.theme-browser .theme.add-new-theme a:hover:after, 
+.theme-browser .theme.add-new-theme a:focus:after {
+    background: $base-color;
+}
+
+.contextual-help-tabs .active {
+    border-left-color: $highlight-color;
+    background: transparentize($highlight-color, 0.95);
+}
+
+#contextual-help-back {
+    background: transparentize($highlight-color, 0.95);
+}
+
+.tablenav {
+    margin: 6px 0 6px;
+}
+
+#activity-widget #the-comment-list .unapproved:before {
+    background-color: $ui-danger;
+}
+
+
+// PLUGIN STYLING OVERRIDES
+// --------------------------------------------------
+
+@import 'plugin-misc';
+@import 'plugin-ithemes';
+@import 'plugin-acf';
+@import 'plugin-tsf';
+
+
+// SCRAP
+// --------------------------------------------------
+
+// .fixed {
+
+//     .column-author, 
+//     .column-date, 
+//     .column-format, 
+//     .column-links, 
+//     .column-parent, 
+//     .column-posts{
+//         min-width: 6rem;
+//         // width: auto;
+//     }
+
+//     .column-categories, 
+//     .column-rel, 
+//     .column-response, 
+//     .column-role, 
+//     .column-tags {
+//         min-width: 9rem;
+//         // width: auto;
+//     }
+// }
+
+// .plugins tr.active+tr.inactive td, 
+// .plugins tr.active+tr.inactive th, 
+// .plugins tr.active.plugin-update-tr+tr.inactive td, 
+// .plugins tr.active.plugin-update-tr+tr.inactive th,
+// .plugin-install #the-list td, 
+// .plugins .active td, 
+// .plugins .active th, 
+// .plugins .inactive td, 
+// .plugins .inactive th, 
+// .upgrade .plugins td, 
+// .upgrade .plugins th,
+// .plugins .plugin-update-tr .plugin-update {
+//     // box-shadow: none;
+//     // border-bottom: 1px solid transparentize($black, 0.92);
+// }
+
+
+
+// .widefat ol, 
+// .widefat p, 
+// .widefat tfoot tr td, 
+// .widefat tfoot tr th, 
+// .widefat thead tr td, 
+// .widefat thead tr th,
+// .widefat ul {
+//     // color: #555;
+// }
+
+
+// .wp-person a:focus .gravatar, 
+// a:focus, 
+// a:focus .media-icon img {
+//     box-shadow: 0 0 0 1px transparentize($base-color, 0.85), 0 0 2px 1px transparentize($base-color, 0.85);
+// }
+
+// .tagcloud-link.button-link {
+//     color: $link;
+
+//     &:hover {
+//         color: $link-focus;
+//     }
+// }

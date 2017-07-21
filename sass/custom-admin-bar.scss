@@ -1,0 +1,88 @@
+
+@import 'init';
+@import 'wp-variables';
+@import 'wp-mixins';
+
+$admin-menu-width: 12rem;
+
+// ==================================================
+// Custom Admin Bar
+// ==================================================
+
+// JITB BRANDING
+
+#wp-admin-bar-jitb-logo {
+
+    width: 147px;
+
+    max-height: 32px !important;
+    overflow: hidden;
+
+    > .ab-item,
+    &:hover > .ab-item, {
+        
+        max-height: 32px;
+
+        background-repeat: no-repeat !important;
+        background-position: left 1rem top 5px !important;
+        background-size: 106px !important;
+        padding: 0 1.05rem 0 1rem !important;
+    }
+}
+
+#wpadminbar .ab-top-menu>li.hover>.ab-item, 
+#wpadminbar.nojq .quicklinks .ab-top-menu>li>.ab-item:focus, 
+#wpadminbar:not(.mobile) .ab-top-menu>li:hover>.ab-item, 
+#wpadminbar:not(.mobile) .ab-top-menu>li>.ab-item:focus {
+    color: $highlight-color;
+}
+
+#wpadminbar:not(.mobile)>#wp-toolbar a:focus span.ab-label, 
+#wpadminbar:not(.mobile)>#wp-toolbar li:hover span.ab-label, 
+#wpadminbar>#wp-toolbar li.hover span.ab-label {
+    color: $highlight-color;
+}
+
+#wpadminbar #adminbarsearch:before {
+    color: lighten($base, 50%) !important;
+}
+
+#wpadminbar .quicklinks .ab-sub-wrapper .menupop.hover>a, 
+#wpadminbar .quicklinks .menupop ul li a:focus, 
+#wpadminbar .quicklinks .menupop ul li a:focus strong, 
+#wpadminbar .quicklinks .menupop ul li a:hover, 
+#wpadminbar .quicklinks .menupop ul li a:hover strong, 
+#wpadminbar .quicklinks .menupop.hover ul li a:focus, 
+#wpadminbar .quicklinks .menupop.hover ul li a:hover, 
+#wpadminbar .quicklinks .menupop.hover ul li div[tabindex]:focus, 
+#wpadminbar .quicklinks .menupop.hover ul li div[tabindex]:hover, 
+#wpadminbar li #adminbarsearch.adminbar-focused:before, 
+#wpadminbar li .ab-item:focus .ab-icon:before, 
+#wpadminbar li .ab-item:focus:before, 
+#wpadminbar li a:focus .ab-icon:before, 
+#wpadminbar li.hover .ab-icon:before, 
+#wpadminbar li.hover .ab-item:before, 
+#wpadminbar li:hover #adminbarsearch:before, 
+#wpadminbar li:hover .ab-icon:before, 
+#wpadminbar li:hover .ab-item:before, 
+#wpadminbar.nojs .quicklinks .menupop:hover ul li a:focus, 
+#wpadminbar.nojs .quicklinks .menupop:hover ul li a:hover {
+    color: $white;
+}
+
+
+#wpadminbar .ab-top-menu > .menupop > .ab-sub-wrapper {
+    min-width: $admin-menu-width;
+}
+
+#wpadminbar .menupop .ab-sub-wrapper {
+    background-color: lighten($base, 7%);
+}
+
+#wpadminbar:not(.mobile) .ab-top-menu > li:hover > .ab-item, 
+#wpadminbar:not(.mobile) .ab-top-menu > li > .ab-item:focus, 
+#wpadminbar.nojq .quicklinks .ab-top-menu > li > .ab-item:focus, 
+#wpadminbar.nojs .ab-top-menu > li.menupop:hover > .ab-item, 
+#wpadminbar .ab-top-menu > li.menupop.hover > .ab-item {
+     background-color: lighten($base, 7%);
+}

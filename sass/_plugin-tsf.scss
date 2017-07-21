@@ -1,0 +1,42 @@
+
+// SEO Framework
+// --------------------------------------------------
+
+.tsf-flex-nav-tab .tsf-flex-nav-tab-radio:checked+.tsf-flex-nav-tab-label {
+    box-shadow: 0 -3px 0 0 $highlight-color inset;
+}
+
+span.tsf-seo-bar {
+    text-shadow: none;
+    padding: 0;
+}
+
+.tsf-seo-bar-inner-wrap a {
+
+    color: #444;
+    box-shadow: none;
+
+    &:hover {
+        color: lighten(#444, 10%);
+    }
+}
+
+.tsf-seo-bar-bad,
+.tsf-seo-bar-good,
+.tsf-seo-bar-okay {
+    background-color: $white;
+    border: 1px solid #e1e1e1;
+}
+
+.tsf-seo-bar-bad {
+    border-bottom: 4px solid $ui-danger;
+}
+
+.tsf-seo-bar-good {
+    border-bottom: 4px solid $ui-success;
+}
+
+.tsf-seo-bar-okay {
+    border-bottom: 4px solid $ui-alert;
+}
+

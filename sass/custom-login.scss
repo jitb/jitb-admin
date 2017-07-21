@@ -1,0 +1,53 @@
+
+@import 'init';
+@import 'wp-variables';
+@import 'wp-mixins';
+@import 'wp-admin';
+@import 'inputs';
+
+// ==================================================
+// Login Styles
+// ==================================================
+
+#login {
+
+    max-width: 90%;
+    width: 24rem;
+    padding: 7vw 0 0;
+
+    h1 a {
+        width: 14rem;
+        height: 5rem;
+        background-size: 100%;
+        background-position: center center;
+
+        margin: 1.5rem auto;
+    }
+
+    #backtoblog a:hover, 
+    #nav a:hover, 
+    h1 a:hover {
+        color: $highlight-color;
+    }
+
+    #login_error, 
+    .message {
+        border-left-color: $ui-alert;
+    }
+
+    form {
+        padding: 1.25rem 2rem 2rem;
+        margin-top: 0;
+    }
+}
+
+.wp-core-ui {
+    
+    .button-link {
+        color: $highlight-color;
+
+        &:hover {
+            color: lighten( $highlight-color, 10% );
+        }
+    }
+}

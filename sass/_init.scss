@@ -1,0 +1,39 @@
+
+// ==================================================
+// Set Our Admin Theme Colours
+// ==================================================
+
+// Theme Colors
+
+$primary: #f86f2c;
+$base: #232628;
+
+$white: #fff;
+$black: #000;
+
+
+// UI Colors
+
+// $ui-success: #25db80;
+$ui-success: #0cc34b;
+
+// $ui-alert: #f8e32b;
+$ui-alert: #ffa700;
+$ui-warning: $ui-alert;
+
+// $ui-danger: #f42e2e;
+$ui-danger: #dd3811;
+$ui-error: $ui-danger;
+
+
+// ==================================================
+// Apply Colors to WP admin defaults
+// ==================================================
+
+$text-color: transparentize(#fff, 0.2);     // #fff !default 
+$base-color: $base;                         // #23282d !default
+
+$highlight-color: $primary;                 // #0073aa !default;
+$notification-color: #f8472b;               // #d54e21 !default;
+
+$link: $primary;                            // #0073aa !default;
