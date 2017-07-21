@@ -6,6 +6,8 @@ Description: Custom admin theme for Jack in the box sites. Hope you like orange.
 Author: Jack in the box
 Version: 2.0.0
 Author URI: http://springbox.com.au
+
+GitHub Plugin URI: https://github.com/jitb/jitb-admin
 */
 
 namespace jitb_admin;
@@ -231,64 +233,52 @@ remove_action('welcome_panel', 'wp_welcome_panel');
 
 
 
-// ==================================================
-// SCRAP
-// ==================================================
+// Change Permissions: Flamingo viewable as Editor
+// --------------------------------------------------
+
+function jitb_flamingo_map_meta_cap( $meta_caps ) {
+  
+  $meta_caps = array_merge( $meta_caps, array(
+    'flamingo_edit_contact' => 'publish_posts',
+    'flamingo_edit_contacts' => 'publish_posts',
+    'flamingo_delete_contact' => 'publish_posts',
+    'flamingo_edit_inbound_message' => 'publish_posts',
+    'flamingo_edit_inbound_messages' => 'publish_posts',
+    'flamingo_delete_inbound_message' => 'publish_posts',
+    'flamingo_delete_inbound_messages' => 'publish_posts',
+    'flamingo_spam_inbound_message' => 'publish_posts',
+    'flamingo_unspam_inbound_message' => 'publish_posts',
+  ) );
+
+  return $meta_caps;
+}
+
+add_filter( 'flamingo_map_meta_cap', __NAMESPACE__ . '\\jitb_flamingo_map_meta_cap' );
 
 
-// ==================================================
-// Image Uploader
-// ==================================================
- 
-// function admin_scripts() {
 
-//   if ( isset( $_GET['page'] ) && $_GET['page'] == 'my-setting-admin' ) {
-
-//     wp_enqueue_media();
-//     wp_register_script( 'custom-scripts', plugins_url( '/js/custom.js', __FILE__ ), array( 'jquery','media-upload','thickbox' ) );
-//     wp_enqueue_script( 'custom-scripts' );
-//   }
-// }
-// add_action('admin_enqueue_scripts', __NAMESPACE__ . '\\admin_scripts');
-
-
-/*-----------------------------------------------------------------------------------*/
-/* Image Uploader */
-/*-----------------------------------------------------------------------------------*/
-// add_action('admin_enqueue_scripts', 'jitb_admin_scripts');
- 
-// function jitb_admin_scripts() {
-//   if ( isset( $_GET['page'] ) && $_GET['page'] == 'my-setting-admin' ) {
-//     wp_enqueue_media();
-//     wp_register_script( 'custom-scripts', plugins_url( '/js/custom.js', __FILE__ ), array( 'jquery','media-upload','thickbox' ) );
-//     wp_enqueue_script( 'custom-scripts' );
-//   }
-// }
-
-
-// ==================================================
-// Remove edit page elements
+// Change Admin Menu Labels
 // ==================================================
 
-// if ( is_admin() ) {
+// Contact Form 7 -> Forms
+// Flamingo -> Contacts
 
-//  function remove_meta_boxes() {
+function edit_admin_menu_labels() {  
 
-//     // if( !current_user_can('manage_options') ) {
-//      // Custom Fields
-//      // remove_meta_box( 'postcustom' , 'page' , 'normal' );
-//      // Discussion
-//      // remove_meta_box( 'commentsdiv' , 'page' , 'normal' );
-//      // Comments
-//      // remove_meta_box( 'commentstatusdiv' , 'page' , 'normal' );
-//      // Revisions
-//      // remove_meta_box( 'revisionsdiv' , 'page' , 'normal' );
-//     // }
-//  }
-//  add_action( 'admin_menu', __NAMESPACE__ . '\\remove_meta_boxes' );
+  _rename_top_level_menu('Contact', 'Forms');
+  _rename_top_level_menu('Flamingo', 'Contacts');
+}
+add_action('admin_menu', __NAMESPACE__ . '\\edit_admin_menu_labels', 1000 );
 
-// }
+function _rename_top_level_menu( $original, $new ) {
 
+  global $menu;
+  foreach ( $menu AS $k => $v ) {
+    if ( $original == $v[0] ) {
+      $menu[$k][0] = $new;
+    }
+  }
+}
 
 ?>
 
