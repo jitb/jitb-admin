@@ -4,7 +4,7 @@ Plugin Name: JITB Admin
 Plugin URI: http://springbox.com.au/
 Description: Custom admin theme for Jack in the box sites. Hope you like orange.
 Author: Jack in the box
-Version: 2.0.0
+Version: 2.0.1
 Author URI: http://springbox.com.au
 
 GitHub Plugin URI: https://github.com/jitb/jitb-admin
