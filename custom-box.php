@@ -4,7 +4,7 @@ Plugin Name: JITB Admin
 Plugin URI: http://springbox.com.au/
 Description: Custom admin theme for Jack in the box sites. Hope you like orange.
 Author: Jack in the box
-Version: 2.0.2
+Version: 2.0.21
 Author URI: http://springbox.com.au
 
 GitHub Plugin URI: https://github.com/jitb/jitb-admin
@@ -236,10 +236,23 @@ remove_action('welcome_panel', 'wp_welcome_panel');
 // Change Permissions: Flamingo viewable as Editor
 // --------------------------------------------------
 
+// add_filter( 'flamingo_map_meta_cap', 'jitb_flamingo_map_meta_cap' );
+
+// function jitb_flamingo_map_meta_cap( $meta_caps ) {
+  
+//   $meta_caps = array_merge( $meta_caps, array(
+//     'flamingo_edit_contacts' => 'edit_pages',
+//     'flamingo_edit_inbound_messages' => 'edit_pages',
+//   ) );
+
+//   return $meta_caps;
+// }
+
+
+
 function jitb_flamingo_map_meta_cap( $meta_caps ) {
   
-  $meta_caps = array(
-  
+  $meta_caps = array_merge( $meta_caps, array(
     'flamingo_edit_contact' => 'edit_posts',
     'flamingo_edit_contacts' => 'edit_posts',
     'flamingo_delete_contact' => 'edit_posts',
@@ -252,17 +265,41 @@ function jitb_flamingo_map_meta_cap( $meta_caps ) {
     'flamingo_edit_outbound_message' => 'publish_posts',
     'flamingo_edit_outbound_messages' => 'publish_posts',
     'flamingo_delete_outbound_message' => 'publish_posts',
-  );
+  ) );
 
-  $caps = array_diff( $caps, array_keys( $meta_caps ) );
-
-  if ( isset( $meta_caps[$cap] ) )
-      $caps[] = $meta_caps[$cap];
-
-  return $caps;
+  return $meta_caps;
 }
-remove_filter( 'map_meta_cap', 'flamingo_map_meta_cap' );
-add_filter( 'map_meta_cap', __NAMESPACE__ . '\\jitb_flamingo_map_meta_cap', 9, 4 );
+
+add_filter( 'flamingo_map_meta_cap', __NAMESPACE__ . '\\jitb_flamingo_map_meta_cap' );
+
+
+// function jitb_flamingo_map_meta_cap( $meta_caps ) {
+  
+//   $meta_caps = array(
+  
+//     'flamingo_edit_contact' => 'edit_posts',
+//     'flamingo_edit_contacts' => 'edit_posts',
+//     'flamingo_delete_contact' => 'edit_posts',
+//     'flamingo_edit_inbound_message' => 'edit_posts',
+//     'flamingo_edit_inbound_messages' => 'edit_posts',
+//     'flamingo_delete_inbound_message' => 'edit_posts',
+//     'flamingo_delete_inbound_messages' => 'edit_posts',
+//     'flamingo_spam_inbound_message' => 'edit_posts',
+//     'flamingo_unspam_inbound_message' => 'edit_posts',
+//     'flamingo_edit_outbound_message' => 'edit_posts',
+//     'flamingo_edit_outbound_messages' => 'edit_posts',
+//     'flamingo_delete_outbound_message' => 'edit_posts',
+//   );
+
+//   $caps = array_diff( $caps, array_keys( $meta_caps ) );
+
+//   if ( isset( $meta_caps[$cap] ) )
+//       $caps[] = $meta_caps[$cap];
+
+//   return $caps;
+// }
+// remove_filter( 'map_meta_cap', 'flamingo_map_meta_cap' );
+// add_filter( 'map_meta_cap', __NAMESPACE__ . '\\jitb_flamingo_map_meta_cap', 9, 4 );
 
 
 
