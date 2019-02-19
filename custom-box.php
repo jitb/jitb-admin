@@ -42,7 +42,9 @@ add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_styles' );
 
 function admin_bar_styles() {
 
-  wp_enqueue_style('jitb-admin-bar', plugins_url('css/custom-admin-bar.css', __FILE__));
+  if ( is_admin() || current_user_can('editor') || current_user_can('administrator') ) :
+    wp_enqueue_style('jitb-admin-bar', plugins_url('css/custom-admin-bar.css', __FILE__));
+  endif;
 }
 
 add_action( 'admin_enqueue_scripts', __NAMESPACE__ . '\\admin_bar_styles' );
